@@ -1,14 +1,17 @@
 const http = require("http");
 
-const requestListener = function (req, res) {
-  res.writeHead(200);
-  res.end("Hello World");
-};
+const server = http.createServer((req, res) => {
+  let data = [];
+  req
+    .on("data", (chunk) => {
+      data.push(chunk);
+    })
+    .on("end", () => {
+      const body = Buffer.concat(data).toString();
+      res.setHeader("Content-Type", "application/json");
 
-const server = http.createServer(requestListener);
-
-server.on("request", (request, response) => {
-  console.log(request.headers);
+      res.end(JSON.stringify(body));
+    });
 });
 
 server.listen(8000);
