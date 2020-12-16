@@ -22,7 +22,16 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: require.resolve("babel-loader"),
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: [
+              "@babel/plugin-proposal-class-properties",
+              "@babel/plugin-transform-runtime",
+            ],
+          },
+        },
       },
       {
         test: /\.css$/,
