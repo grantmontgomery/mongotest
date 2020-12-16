@@ -7,4 +7,8 @@ const requestListener = function (req, res) {
 
 const server = http.createServer(requestListener);
 
+server.on("request", (request, response) => {
+  console.log(request.headers);
+});
+
 server.listen(8000);
