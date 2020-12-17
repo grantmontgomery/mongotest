@@ -11,9 +11,7 @@ export const Nav = () => {
           <Link to="/">Post</Link>
         </li>
         <li>
-          <Link href="" to="/get">
-            Get
-          </Link>
+          <Link to="/get">Get</Link>
         </li>
       </ul>
     </nav>
