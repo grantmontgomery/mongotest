@@ -4,6 +4,20 @@ import "./Post.css";
 export const Post = () => {
   const [fields, setFields] = React.useState({ title: "", text: "" });
   const [loading, setLoading] = React.useState(false);
+  const [postSent, setSent] = React.useState(false);
+
+  React.useState(() => {
+    if (postSent) {
+      setTimeout(() => {
+        setSent(false);
+        console.log("success turned off.");
+      }, 1000);
+    }
+    return clearTimeout();
+  }, [postSent]);
+
+  console.log(postSent);
+
   const handlePostSubmit = async () => {
     setLoading(true);
     try {
@@ -23,8 +37,7 @@ export const Post = () => {
 
       const responseJSON = await response.json();
       console.log(responseJSON);
-
-      return responseJSON;
+      if (responseJSON.inserted) setSent(true);
     } catch (error) {
       setLoading(false);
       console.log(error.message);
