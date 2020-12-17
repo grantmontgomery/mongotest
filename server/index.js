@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
     }
   };
   console.log(connectToDB());
-  res.setHeader("Content-Type", "text/plain");
+  res.setHeader("Content-Type", "application/json");
   res.end("Hello World");
 });
 

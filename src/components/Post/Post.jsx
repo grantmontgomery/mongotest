@@ -6,17 +6,15 @@ export const Post = () => {
   const [loading, setLoading] = React.useState(false);
   const [postSent, setSent] = React.useState(false);
 
-  React.useState(() => {
-    if (postSent) {
-      setTimeout(() => {
-        setSent(false);
-        console.log("success turned off.");
-      }, 1000);
-    }
-    return clearTimeout();
-  }, [postSent]);
-
-  console.log(postSent);
+  // React.useState(() => {
+  //   if (postSent) {
+  //     console.log("post successful");
+  //     setTimeout(() => {
+  //       setSent(false);
+  //     }, 1000);
+  //   }
+  //   return clearTimeout();
+  // }, [postSent]);
 
   const handlePostSubmit = async () => {
     setLoading(true);

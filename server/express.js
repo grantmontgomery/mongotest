@@ -29,10 +29,26 @@ app.post("/post", async (req, res) => {
           : res.send({ inserted: true });
       }
     );
+    await client.close();
   } catch (error) {
     res.end(error);
   } finally {
     await client.close();
+    res.end();
+  }
+});
+
+app.post("/get", async (req, res) => {
+  const { title } = req.body;
+  try {
+    await client.connect();
+    const database = await client.db("BlogPosts").collection("Posts");
+    const result = await database.findOne({ title });
+
+    result ? res.send(result) : res.send({ text: "Post does not exist!" });
+
+    await client.close();
+  } catch (error) {
     res.end();
   }
 });
