@@ -7,16 +7,17 @@ export const Post = () => {
   const handlePostSubmit = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:8000", {
+      const { title, text } = fields;
+      const response = await fetch("http://localhost:8000/post", {
         headers: {
           Accept: "application/json",
-          "Content-Type": "applicaiton/json",
+          "content-type": "application/json",
+          "Access-Control-Allow-Origin": "*",
         },
         method: "POST",
-        mode: "no-cors",
         body: JSON.stringify({
-          title: fields.title,
-          text: fields.text,
+          title,
+          text,
         }),
       });
 
